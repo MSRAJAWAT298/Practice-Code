@@ -1,0 +1,42 @@
+//*****************************************************************************************************//
+<div class="input-group datetimepicker-element">
+  <input type="text" name="dob" id="dob" value="" class="form-control  date-picker" data-date-format="yyyy-mm-dd"  data-rule-required="true" data-msg-required="This field is required." data-date-end-date="0d" readonly="">
+  <span class="input-group-addon cursor-pointer">
+    <i class="fa fa-calendar bigger-110"></i>
+   </span>
+   <span class="erequired input-group-addon block_white align-top red">*</span>
+</div>
+//*****************************************************************************************************//
+<script>
+$(document).ready(function(){
+	$("#dob").on('change',function(){   
+        
+		var value=$(this).val();
+		//alert(value);
+		var today = new Date();
+
+		var dd = today.getDate();
+
+		var mm = today.getMonth()+1; 
+
+		var yyyy = today.getFullYear();
+
+		if(dd<10) {
+
+			dd='0'+dd
+
+		} 
+		if(mm<10) {
+
+			mm='0'+mm
+
+		} 
+		today = yyyy+'-'+mm+'-'+dd;
+		//alert(value +" "+" "+today);
+		if(value>today){
+			$(this).val('');
+			$.bootstrapGrowl("Date cannot be greater than current date", { type: 'danger' });
+		}
+	});
+  });//end of ready funtion//
+  </script>
