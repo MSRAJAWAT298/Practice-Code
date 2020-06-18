@@ -1,0 +1,13 @@
+$('#postcode').change(function () {
+    var zip = $('#postcode').val();
+    //alert(zip);
+    if ((zip.length)< 5 || (zip.length)>5 ){
+        errorMessage = "*zipcode should only be 5 digits";
+
+        alert(errorMessage);
+    }
+    else if ( zip =( "^[0-9]+$" )){
+        errorMessage = "*zipcode should be numbers only";
+        alert(errorMessage);
+    }
+});
