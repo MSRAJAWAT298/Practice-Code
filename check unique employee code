@@ -1,0 +1,40 @@
+	
+//===================employee code validation========================//
+if(isset($_POST['search_emp_code'])){
+  if($thisaction!= 'edit') 
+  { 
+    $ObjEmpMaster->setWhere("AND employees.employee_code = :employee_code",$_POST['search_emp_code'],"int");
+    $employee_data = $ObjEmpMaster->getEmpdetail();
+  }
+
+  if($employee_data){
+    echo 'Employee Code already asign';
+  }
+  exit;
+}
+//===================end employee code validation========================//
+
+<script>
+///////////////////////////////////////////////////////////////////////////////
+////////////////// J Q U E R Y F U N C T I O N S /////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+$(document).ready(function(){
+//======================check unique employee code=========================//
+	$("#emp_code").on('blur',function(){   
+        var emp_code = $(this).val(); 
+		 	$.ajax({
+		    	url: "add_employee_list.php", 
+		    	type:"POST",
+		    	data:{search_emp_code:emp_code},
+		    	success: function(result){
+					if(result!=""){
+						$("#emp_code").val('');
+						setTimeout(function() {
+							$.bootstrapGrowl(result, { type: 'danger' });
+						}, 1000);
+					}
+	      }});
+	  });
+//======================end check unique employee code=========================//
+});
