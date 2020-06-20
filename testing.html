@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h2>Create link without reload page</h2>
+<a href="user_images.php?action=favourite&image_id=9" class="counter" onclick="return MyFunction();">Click Me</a>
+
+<script type="text/javascript">
+function MyFunction() {//this funtion is use to restrict the link 
+  return false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////////// J Q U E R Y F U N C T I O N S////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+
+$(document).ready(function(){
+    //start funtion for done your funtion what you want to do //
+
+ $('.counter').click(function(){
+    var $this = $(this);
+    alert(this);
+    alert($(this).attr("href").split("=")[2]);
+    $id = $(this).attr("href").split("=")[2];       
+            $.ajax({
+                url: "your_url",
+                type:"GET",
+                data:"action=favourite&image_id="+id,
+                success : function(data) {
+                alert(data);
+                }
+            });
+    });
+});
+</script>
+</body>
+</html>
