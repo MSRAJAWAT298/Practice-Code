@@ -36,6 +36,32 @@ $(document).ready(function(){
             });
     });
 });
+
+
+//**********************************ANOTHER METHOD*******************************//
+
+$(document).ready(function() {
+ $('.counter').click(function(e){
+    var $this = $(this);
+    var id = $(this).attr("href").split("=")[2];
+        
+            $.ajax({
+                url: "user_images.php",
+                type:"GET",
+                data:"action=favourite&image_id="+id,
+                success : function(data) {
+							if(data == '1') {
+							$("#favourite_"+id).addClass("text-danger");
+							} else{
+							$("#favourite_"+id).removeClass("text-danger");
+							}
+                }
+            });
+			return false;
+		e.preventDefault();
+    });
+});
+//*******************************************************************************//
 </script>
 </body>
 </html>
