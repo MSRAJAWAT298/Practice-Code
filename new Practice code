@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+ 		var val="false";
+	$( "i" ).each(function() {
+  			var a=$( this ).text();
+  			//alert(a);
+    	if($( this ).hasClass( "text-danger" ))
+        {
+            val="true";
+        }
+        
+        if(val=="true") 
+        {
+        	alert("having class");
+        }
+       else 
+       {
+       		alert("False");
+       }
+       
+	});
+
+});
+
+</script>
+</head>
+<body>
+
+<i class="fa fa-heart text-danger" id="favourite_28">Testing</i>
+
+</body>
+</html>
