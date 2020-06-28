@@ -1,0 +1,5 @@
+UPDATE mitul_avaiya1.email_template_manager_description 
+INNER JOIN mitul_avaiya.email_template_manager_description 
+ON mitul_avaiya.email_template_manager_description.auto_id = mitul_avaiya1.email_template_manager_description.auto_id 
+SET mitul_avaiya1.email_template_manager_description.template_subject = mitul_avaiya.email_template_manager_description.template_subject,
+mitul_avaiya1.email_template_manager_description.template_content = mitul_avaiya.email_template_manager_description.template_content
