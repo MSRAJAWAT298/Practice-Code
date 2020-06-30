@@ -1,0 +1,61 @@
+var regex = /^(.+?)(\d+)$/i;
+var cloneIndex = $(".clonedInput").length;
+function clone(){
+    var new_cloneIndex = cloneIndex+1;
+    $("#clonedInput1").clone()
+    .insertAfter("#clonedInput"+cloneIndex)
+    .attr("id", "clonedInput" +  new_cloneIndex)
+    .find("*")
+    .each(function() {
+        var id = this.id || "";
+            var match = id.match(regex) || [];
+            if (match.length == 3) {
+                this.id = match[1] + (new_cloneIndex);
+                $('#'+this.id).val('');
+                // console.log(this.id);
+            }
+        })
+        .on('click', 'button.clone', clone)
+        .on('click', 'button.remove', remove);
+        cloneIndex++;  
+        $('#pos').val(cloneIndex);    
+        $(".remove").show();
+        $("#delete_more_0").hide();    
+    }
+
+    //==================start remove row function=====================//
+
+    function remove(){
+        var row_index = $(this).parent().parent().index('tr'); 
+        //console.log("Row Index: "+row_index);
+        if(row_index==1){
+            alert("Can't be delete");
+        }else{
+            $(this).parents(".clonedInput").remove();
+            cloneIndex = cloneIndex-1;
+            $('#pos').val(cloneIndex);   
+            var pos = $('#pos').val(); 
+             if(pos==1){
+                $("#delete_more_0").hide();
+            }
+        }
+    }
+
+    //==================end remove row function=====================//
+
+jQuery(document).ready(function($){
+    
+    $("#frmtemplatedetails").validate({});
+
+    $(".add_more").on("click", clone);
+
+    $("button.remove").on("click", remove);
+
+    var pos = $('#pos').val(); 
+    if(pos==1){
+        $("#delete_more_0").hide();
+    }
+    
+    
+    
+});
