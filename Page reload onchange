@@ -1,0 +1,23 @@
+<div class="col-sm-6 form-inline">
+	<label for="listing_sort_by" class="mr12">Select Corporate :</label>
+  <select name="corporate_list" id="corporate_list" class="form-control  form-control">
+    <option value="">Select</option>
+    <option value="12" selected="selected">NYU_MAYANK</option>
+  </select>	
+</div>
+
+<script>
+
+jQuery(function($) {	
+	$( "#corporate_list" ).change(function() {
+		var path = "corporate_employee_group.php";
+
+		var corporate_id =$(this).val();
+		
+		if(corporate_id!='0' || corporate_id!=''){
+			path =path+'?corporate_id='+corporate_id;
+		}
+		window.location.replace(path);
+	});
+});
+</script>
