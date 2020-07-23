@@ -1,0 +1,9 @@
+INSERT INTO employee_allotment(user_id, kid, group_id,group_name,template_id,template_name, product_id, quantity, qty_balance, qty_usage)
+SELECT em.user_id,um.k_id,em.group_id,eg.group_name,ga.template_id,at.template_name,ad.product_id,ad.qty,ad.qty,0 FROM `employee_membership` as em
+LEFT join user_master as um on um.userid= em.user_id
+LEFT join employees_groups as eg on eg.group_id= em.group_id
+RIGHT join groups_allotment as ga on ga.group_id = em.group_id
+LEFT join allotment_template as at on at.template_id= ga.template_id
+RIGHT join allotment_details as ad on ad.template_id = ga.template_id
+where um.k_id != ''
+ORDER by em.user_id ASC , em.group_id ASC
