@@ -1,0 +1,23 @@
+
+$( document ).ready(function() {
+	var custom_validation = $("#frmfaqcataction").find(".custom_validation");
+	if(custom_validation.length>0){		
+		var symbol = '<span class="erequired input-group-addon block_white align-top text-danger pl-1" id="custom">*</span>';
+		$(".editor-element").append(symbol);
+	}
+});
+
+
+$("form").submit(function(){
+	$(".custom").remove();
+	if($(".opseditor").val()==""){
+		var content = '<div class="errors-block clearfix custom"><span class="error-block text-danger"><i class="fa fa-exclamation-triangle text-orange pr-1"></i>'+VALIDATE_REQUIRED+'</span></div>';
+		$(".language-control").after().append(content);
+		$("div.text-element + .custom").remove();// most imporatant how to use mulitple class Removing an element after a div with Jquery
+		return false;
+	}else{
+		$(".custom").remove();
+		return true;
+	}
+});
+
