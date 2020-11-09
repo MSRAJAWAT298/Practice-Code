@@ -1,0 +1,22 @@
+index.php (filename)
+==================================
+
+require_once(errorLog.php');
+cloud_error_log('put your error result here'); // error result like text, array etc.
+
+
+
+
+errorLog.php (filename)
+==================================
+
+function cloud_error_log($errordata) {
+$handle = fopen('errorLogFile.txt', 'a+');
+$logtext = "******************" . date('d-m-Y h:i:s') . "******************\n\n";
+$logtext .= print_r($errordata, true);
+$logtext .= "\n\n**********************************************************\n\n";
+$errorlog = fwrite($handle, $logtext);
+fclose($handle);
+chmod('errorLogFile.txt', 0777);
+return true;
+}
