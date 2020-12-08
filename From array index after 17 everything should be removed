@@ -1,0 +1,1 @@
+array_splice($a1,18,count($a1)+1);
