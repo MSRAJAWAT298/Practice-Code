@@ -1,0 +1,104 @@
+It is better to restrict the user from entering invalid input and submit the form.
+
+If the inputted data is invalid then the request is not been executed on the server-side script if added validation and the user needs to again fill the details.
+
+If a field does not require a specific type value like – number, character, special character then stop the user from entering.
+
+1. Example
+For validating input, pressed key ASCII code and check it.
+
+If you don’t know the ASCII code of a character then you can view it from here and define your condition in the keypress Event handler.
+
+Allowing only number
+
+Use the event.which to get ASCII code of the pressed character to check.
+
+Below script allows only number input.
+
+$(document).ready(function(){
+  $("#age").keypress(function(e){
+     var keyCode = e.which;
+    /*
+      8 - (backspace)
+      32 - (space)
+      48-57 - (0-9)Numbers
+    */
+ 
+    if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57)) { 
+      return false;
+    }
+  });
+});
+
+Not allowing special characters
+
+You can either return false or call preventDefault() method on event variable.
+
+$("#name").keypress(function(e){
+ var keyCode = e.which;
+ 
+ /* 
+ 48-57 - (0-9)Numbers
+ 65-90 - (A-Z)
+ 97-122 - (a-z)
+ 8 - (backspace)
+ 32 - (space)
+ */
+ // Not allow special 
+ if ( !( (keyCode >= 48 && keyCode <= 57) 
+   ||(keyCode >= 65 && keyCode <= 90) 
+   || (keyCode >= 97 && keyCode <= 122) ) 
+   && keyCode != 8 && keyCode != 32) {
+   e.preventDefault();
+ }
+});
+
+
+Completed Code
+
+<div class="container">
+  <input type='text' id='name' placeholder='Enter your name'><br/><br/>
+  <input type='text' id='age' placeholder='Enter your age'>
+</div>
+
+<!-- Script -->
+<script>
+$(document).ready(function(){
+  $("#age").keypress(function(e){
+    var keyCode = e.which;
+    /*
+    8 - (backspace)
+    32 - (space)
+    48-57 - (0-9)Numbers
+    */
+    if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57)) { 
+      return false;
+    }
+  });
+
+
+  $("#name").keypress(function(e){
+    var keyCode = e.which;
+ 
+    /* 
+    48-57 - (0-9)Numbers
+    65-90 - (A-Z)
+    97-122 - (a-z)
+    8 - (backspace)
+    32 - (space)
+    */
+    // Not allow special 
+    if ( !( (keyCode >= 48 && keyCode <= 57) 
+      ||(keyCode >= 65 && keyCode <= 90) 
+      || (keyCode >= 97 && keyCode <= 122) ) 
+      && keyCode != 8 && keyCode != 32) {
+      e.preventDefault();
+    }
+  });
+});
+</script>
+
+
+
+
+<input type="text" name="color_c[]" id="color_c_8" value="" class="form-control  input-mini cmyk_code mr-2" placeholder="C" intonly="true" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57">
