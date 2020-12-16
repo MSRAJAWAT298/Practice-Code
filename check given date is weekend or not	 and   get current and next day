@@ -1,0 +1,31 @@
+	//check given date is weekend or not
+	var is_weekend =  function(date1){
+		var dt = new Date(date1); 
+		if(dt.getDay() == 6 || dt.getDay() == 0)
+		{
+			return true;
+		}else{
+			return false;
+		} 
+	}
+
+	//get current and next day 
+	function today(i)
+    {
+        var today = new Date();
+        var dd = today.getDate()+i;
+        var mm = today.getMonth();
+        var yyyy = today.getFullYear();
+        today = yyyy+'-'+mm+'-'+dd;
+
+        return today;   
+	}
+
+	var i,production_days = PRODUCTION_DAYS;//if production day is 7 and ther is 2 weekend in this days then production day will be 9 
+
+	for (i = 0; i < PRODUCTION_DAYS; i++) { 
+			console.log(today(i));
+		if(is_weekend(today(i))){
+			production_days = production_days + 1;
+		}
+	}
