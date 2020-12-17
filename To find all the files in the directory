@@ -1,0 +1,26 @@
+To find all the files in the directory /path/to/directory with a .txt file extension, you can do this:
+
+$files = glob("/path/to/directory/*.txt");
+
+The $files array contains the following from the example directory:
+
+Array
+(
+    [0] => /path/to/directory/bar.txt
+    [1] => /path/to/directory/foo.txt
+    [2] => /path/to/directory/link2foo.txt
+)
+
+for OPS Framework
+echo '<pre>'; print_r(glob(DIR_WS_IMAGES."logs/*.log")); echo '</pre>'; exit;
+
+
+Example using braces
+
+There are flags which can be passed as a second optional parameter. One of these is GLOB_BRACE which means that e.g. {jpg,gif,png} will be expanded to match jpg, gif and png which can be useful if you need to look for a particular set of files by their extension, in this example for image files.
+
+If the example directory also had the files 1.jpg, 2.gif and 3.png then you can do this to get glob to return just the image files:
+
+$files = glob("/path/to/directory/*.{jpg,gif,png}", GLOB_BRACE);
+
+print_r($files) would echo:
