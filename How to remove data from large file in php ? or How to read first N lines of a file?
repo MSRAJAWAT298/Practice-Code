@@ -1,0 +1,13 @@
+//you can use this function  for delete data from large file with less amount of time
+function deletecontentfromfiles($filepath,$line_number=5000) {
+    $file = file($filepath);
+    echo "<br>Lines before deleting :: " . count($file);
+
+    for ($i =0; $i < $line_number; $i++) {
+        unset($file[$i]);
+    }
+    //Recorded in a file
+    file_put_contents($filepath, implode("", $file));
+    echo "<br>Lines after deleting :: " . count($file);
+}
+echo '<pre>'; print_r(deletecontentfromfiles($filepath,$line_number)); echo '</pre>'; exit;
