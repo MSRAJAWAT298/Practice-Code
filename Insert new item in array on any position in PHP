@@ -1,0 +1,18 @@
+
+<?php
+function array_insert_after( array $array, $key, array $new ) {
+    $keys = array_keys( $array );
+    $index = array_search( $key, $keys );
+    $pos = false === $index ? count( $array ) : $index + 1;
+    return array_merge( array_slice( $array, 0, $pos ), $new, array_slice( $array, $pos ) );
+}
+$a = str_split('A0B234');
+echo '<pre>';print_r($a);
+$a = array_insert_after($a,2,array("lock"));
+$a = array_insert_after($a,5,array("lock"));
+echo '<pre>';print_r($a);
+die;
+?>
+
+
+Referance :: https://stackoverflow.com/questions/3797239/insert-new-item-in-array-on-any-position-in-php
