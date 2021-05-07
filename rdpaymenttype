@@ -1,0 +1,12 @@
+
+	if(cart_options.cart_total <=0) {
+    	$("label[id^=paymenttitle]").hide();
+        $("#paymenttitle1").show();
+    }
+	
+    if($('input[name="rdpaymenttype"]:checked').length <= 0) {
+        $('.radiotab:first').tab('show');
+        $('.paytab[id^=paymenttitle]:not(".d-none") input[type=radio]:first').attr("checked",true);
+        $('.paytab[id^=paymenttitle]:not(".d-none") input[type=radio]:first').trigger('click');
+    }
+    
