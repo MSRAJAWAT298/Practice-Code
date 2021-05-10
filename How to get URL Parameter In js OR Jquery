@@ -1,0 +1,20 @@
+
+function GetUrlParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam){
+            return sParameterName[1];
+        }
+    }
+}
+
+	var action_from  = GetUrlParameter('action_from');
+	var save_cart_id  = GetUrlParameter('save_cart_id');
+	if(typeof(action_from) != "undefined" && action_from !== null && typeof(save_cart_id) != "undefined" && save_cart_id !== null ) {
+		$('#OrdComments').val(save_cart_comment);
+		$('#datepicker').val(save_cart_order_date);
+		window.location.href = FILE_SHOPPING_CART;
+		return;
+	}
