@@ -1,0 +1,13 @@
+/**
+ * 
+ * onchange or onupload image preview...
+ */
+ where user_logo1 is id of input file tag
+user_logo1.onchange = evt => {
+	const [file] = user_logo1.files
+	$('#upload_logo1').remove();
+	var src_img = URL.createObjectURL(file);
+	$('#upload_logo1_preview').attr('src',src_img);
+	$('#upload_logo1_preview').attr('data-src',src_img);
+	$('#upload_logo1_preview').removeClass('d-none');
+}
